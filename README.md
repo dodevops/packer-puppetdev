@@ -1,3 +1,4 @@
+![Status: Planning](https://img.shields.io/badge/status-planning-grey.svg)
 # Local testing of puppet
 
 This repository contains scripts together with basic Packer templates for
