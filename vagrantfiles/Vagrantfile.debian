@@ -1,0 +1,59 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+require 'yaml'
+
+# Load our distribution configuration
+
+current_dir = File.dirname(File.expand_path(__FILE__))
+vagrant_config = YAML.load_file("#{current_dir}/config.yaml")
+
+# Load the site's distribution configuration
+
+if File.exist?("config.dist.yaml")
+    site_dist_config = YAML.load_file("config.dist.yaml")
+    vagrant_config.merge!(site_dist_config)
+end
+
+# Load the site configuration
+
+if File.exist?("config.yaml")
+    site_config = YAML.load_file("config.yaml")
+    vagrant_config.merge!(site_config)
+end
+
+Vagrant.configure(2) do |config|
+
+  # Mount puppet folder
+
+  config.vm.synced_folder vagrant_config['environment_path'], "/etc/puppet/environments/localdev"
+
+  # Inject current host key of code.getit.de, so we don't get confirmations
+
+  config.vm.provision "shell", run: "once", inline: <<-SHELL
+    ssh-keyscan -p 7999 -t rsa code.getit.de > ~/.ssh/known_hosts 2>/dev/null
+    ssh-keyscan -p 7999 -t rsa `dig +short code.getit.de` >> ~/.ssh/known_hosts 2>/dev/null
+  SHELL
+
+  # Install puppet modules
+
+  config.vm.provision "shell", run: "always", env: {
+    "PUPPETFILE" => "/etc/puppet/environments/localdev/Puppetfile",
+    "PUPPETFILE_DIR" => "/etc/puppet/environments/localdev/modules"
+  }, inline: <<-SHELL
+    r10k puppetfile install
+  SHELL
+
+  # Run puppet apply
+
+  config.vm.provision "puppet", run: "always" do |puppet|
+    puppet.environment = "localdev"
+    puppet.manifests_path = ["vm", "/etc/puppet/environments/localdev"]
+    puppet.manifest_file = "site.pp"
+    puppet.options = sprintf("--modulepath=/etc/puppet/environments/localdev/modules --parser=future %s", vagrant_config['puppet_arguments'])
+    puppet.hiera_config_path = File.expand_path("../hiera.yaml", __FILE__)
+    puppet.working_directory = "/etc/puppet/environments/localdev"
+    puppet.facter = vagrant_config["puppet_custom_facts"]
+  end
+
+end

@@ -1,0 +1,6 @@
+[submodule "base.ubuntu"]
+	path = base.ubuntu
+	url = git@github.com:boxcutter/ubuntu.git
+[submodule "base.debian"]
+	path = base.debian
+	url = git@github.com:boxcutter/debian.git
