@@ -1,0 +1,11 @@
+:hierarchy:
+        - "nodes/%{clientcert}"
+        - "nodes/%{hostname}"
+        - "roles/%{role}"
+        - "%{osfamily}"
+        - localdev
+        - common
+:backends:
+        - yaml
+:yaml:
+        :datadir: hieradata

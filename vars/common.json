@@ -1,0 +1,7 @@
+{
+  "feature_r10k": "true",
+  "puppet_confdir": "",
+  "puppet_envdir": "",
+  "feature_r10k_custom": "false",
+  "r10k_custom_host": ""
+}

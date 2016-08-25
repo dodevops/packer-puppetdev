@@ -1,7 +1,41 @@
 [
   {
     "op": "add",
-    "path": "/provisioners/0/scripts/-",
-    "value": "../scripts/common.sh"
+    "path": "/provisioners/0/environment_vars/-",
+    "value": "FEATURE_R10K={{user `feature_r10k`}}"
+
+  },
+  {
+    "op": "add",
+    "path": "/provisioners/0/environment_vars/-",
+    "value": "PUPPET_CONFDIR={{user `puppet_confdir`}}"
+
+  },
+  {
+    "op": "add",
+    "path": "/provisioners/0/environment_vars/-",
+    "value": "PUPPET_ENVDIR={{user `puppet_envdir`}}"
+
+  },
+  {
+    "op": "add",
+    "path": "/provisioners/0/environment_vars/-",
+    "value": "FEATURE_R10K_CUSTOM={{user `feature_r10k_custom`}}"
+
+  },
+  {
+    "op": "add",
+    "path": "/provisioners/0/environment_vars/-",
+    "value": "R10K_CUSTOM_HOST={{user `r10k_custom_host`}}"
+
+  },
+  {
+    "op": "add",
+    "path": "/provisioners/-",
+    "value": {
+      "type": "file",
+      "source": "../files",
+      "destination": "/tmp"
+    }
   }
 ]

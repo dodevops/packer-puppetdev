@@ -1,0 +1,7 @@
+{
+  "feature_r10k": "true",
+  "puppet_confdir": "/etc/puppetlabs",
+  "puppet_envdir": "/etc/puppet/environments",
+  "feature_r10k_custom": "false",
+  "r10k_custom_host": ""
+}

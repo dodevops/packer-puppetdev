@@ -6,7 +6,7 @@ require 'yaml'
 # Load our distribution configuration
 
 current_dir = File.dirname(File.expand_path(__FILE__))
-vagrant_config = YAML.load_file("#{current_dir}/config.yaml")
+vagrant_config = YAML.load_file("#{current_dir}/config.dist.yaml")
 
 # Load the site's distribution configuration
 
@@ -27,13 +27,6 @@ Vagrant.configure(2) do |config|
   # Mount puppet folder
 
   config.vm.synced_folder vagrant_config['environment_path'], "/etc/puppet/environments/localdev"
-
-  # Inject current host key of code.getit.de, so we don't get confirmations
-
-  config.vm.provision "shell", run: "once", inline: <<-SHELL
-    ssh-keyscan -p 7999 -t rsa code.getit.de > ~/.ssh/known_hosts 2>/dev/null
-    ssh-keyscan -p 7999 -t rsa `dig +short code.getit.de` >> ~/.ssh/known_hosts 2>/dev/null
-  SHELL
 
   # Install puppet modules
 

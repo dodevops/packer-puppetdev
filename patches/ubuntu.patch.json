@@ -1,0 +1,17 @@
+[
+  {
+    "op": "add",
+    "path": "/provisioners/0/scripts/9",
+    "value": "../scripts/common.sh"
+  },
+  {
+    "op": "add",
+    "path": "/provisioners/0/scripts/9",
+    "value": "../scripts/puppet.ubuntu.sh"
+  },
+  {
+    "op": "add",
+    "path": "/provisioners/0/scripts/9",
+    "value": "../scripts/r10k.sh"
+  }
+]

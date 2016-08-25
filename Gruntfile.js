@@ -13,16 +13,18 @@ module.exports = function (grunt) {
             }
         },
         packerbuild: {
-            debian: {
+            ubuntu: {
                 options: {
-                    template: 'debian.json',
-                    templatePath: 'base.debian',
+                    template: 'ubuntu.json',
+                    templatePath: 'base.ubuntu',
                     patches: [
-                        'patches/common.patch.json'
+                        'patches/common.patch.json',
+                        'patches/ubuntu.patch.json'
                     ],
                     only: [
                         'virtualbox-iso'
-                    ]
+                    ],
+                    runPacker: false
                 }
             }
         }
