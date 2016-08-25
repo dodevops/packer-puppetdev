@@ -1,0 +1,7 @@
+[
+  {
+    "op": "add",
+    "path": "/provisioners/0/scripts/-",
+    "value": "../scripts/common.sh"
+  }
+]

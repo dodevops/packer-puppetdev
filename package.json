@@ -1,0 +1,12 @@
+{
+  "engines": {
+    "node": ">= 4.4.7"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "gruntify-eslint": "^3.0.0"
+  },
+  "dependencies": {
+    "jsonpatch": "^3.0.1"
+  }
+}
