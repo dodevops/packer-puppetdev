@@ -1,6 +1,8 @@
 # Created by .ignore support plugin (hsz.mobi)
 local/*
 !local/README.md
+!local/files
+!local/vars
 !local/files/README.md
 !local/vars/README.md
 test/puppet/modules
