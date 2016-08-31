@@ -92,6 +92,12 @@ used to configure an SSH-connection inside the virtual machine
 * [Vagrant](https://vagrantup.com)
 * [VirtualBox](https://virtualbox.org)
 
+## Initialize the submodules
+
+To fetch the external repositories by boxcutter, run these two commands:
+
+    git submodule update --init 
+
 ## Building process
 
 To build, you first need to install grunt-cli and the needed modules:
