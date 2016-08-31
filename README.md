@@ -34,7 +34,8 @@ your Vagrantfile is. Look in vagrant.includes/config.dist.yaml for the
 keys you can override there.
 
 Also, you can place a hiera.yaml where your Vagrantfile is to alter
-the used hiera configuration.
+the used hiera configuration. Use vagrant.includes/hiera.yaml as a 
+template.
 
 # Building
 

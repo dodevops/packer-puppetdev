@@ -1,3 +1,9 @@
+# Path to your puppet sources
 environment_path: "puppet"
+# Additional arguments for puppet apply (put --parser=future here to use the
+# future parser)
 puppet_arguments: ""
+# Set custom facts for the puppet run
 puppet_custom_facts: {}
+# Set the puppet manifest file
+puppet_manifest: "site.pp"
