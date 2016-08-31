@@ -1,27 +1,27 @@
 [
   {
     "op": "add",
-    "path": "/provisioners/2/scripts/9",
+    "path": "/provisioners/1/scripts/9",
     "value": "../scripts/r10k.sh"
   },
   {
     "op": "add",
-    "path": "/provisioners/2/scripts/9",
+    "path": "/provisioners/1/scripts/9",
     "value": "../scripts/puppet.ubuntu.sh"
   },
   {
     "op": "add",
-    "path": "/provisioners/2/scripts/9",
+    "path": "/provisioners/1/scripts/9",
     "value": "../scripts/common.ubuntu.sh"
   },
   {
     "op": "add",
-    "path": "/provisioners/2/scripts/9",
+    "path": "/provisioners/1/scripts/9",
     "value": "../scripts/common.sh"
   },
   {
     "op": "add",
-    "path": "/provisioners/2/scripts/-",
+    "path": "/provisioners/1/scripts/-",
     "value": "../scripts/git.ubuntu.sh"
   }
 ]
