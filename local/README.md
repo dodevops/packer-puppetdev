@@ -10,7 +10,7 @@ and the var files into the "vars" folder.
 
 Then, in the vars.json specify which files to use.
 
-{
-    "*": [ "file1, "file2" ] <-- These will be included in all build configurations
-    "ubuntu": ["file3"] <-- This will only be included in the ubuntu configuration
-}
+    {
+        "*": [ "file1, "file2" ] <-- These will be included in all build configurations
+        "ubuntu": ["file3"] <-- This will only be included in the ubuntu configuration
+    }
