@@ -1,0 +1,6 @@
+:hierarchy:
+        - test
+:backends:
+        - yaml
+:yaml:
+        :datadir: hieradata

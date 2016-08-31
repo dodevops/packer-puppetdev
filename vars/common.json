@@ -3,5 +3,8 @@
   "puppet_confdir": "",
   "puppet_envdir": "",
   "feature_r10k_custom": "false",
-  "r10k_custom_host": ""
+  "r10k_custom_host": "",
+  "vagrantfile_template": "../vagrantfiles/Vagrantfile",
+  "base_vm_name": "puppetdev",
+  "version": "0.1.0"
 }

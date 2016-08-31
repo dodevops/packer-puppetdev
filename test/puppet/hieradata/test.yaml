@@ -1,0 +1,6 @@
+execs:
+    Test:
+        command: 'touch /tmp/test'
+        path:
+            - /bin
+            - /usr/bin

@@ -1,15 +1,22 @@
 #!/usr/bin/env bash
 
+set -eux
+
 # Install and configure r10k
 
-if [ ${FEATURE_R10K} == "true" ]
+if [ "${FEATURE_R10K}" == "true" ]
 then
 
     # Install r10k
 
     gem install r10k
 
-    cd ${PUPPET_CONFDIR}
+    if [ ! -e "${PUPPET_CONFDIR}" ]
+    then
+        mkdir "${PUPPET_CONFDIR}"
+    fi
+
+    cd "${PUPPET_CONFDIR}"
 
     mkdir r10k
 
@@ -28,20 +35,27 @@ EOL
             exit 1
         fi
 
+        if [ ! -x /root/.ssh ]
+        then
+            mkdir /root/.ssh
+            chmod 0700 /root/.ssh
+        fi
+
         # Setting up connection to custom r10k module repository server
 
-        mv /tmp/files/r10k.provision ~/.ssh
+        mv /tmp/files/r10k.provision /root/.ssh
+        chmod 0600 /root/.ssh/r10k.provision
 
         # We're just disabling ssh host key checking here to avoid errors
         # with r10k
 
-        cat >> ~/.ssh/config <<EOL
+        cat >> /root/.ssh/config <<EOL
 Host ${R10K_CUSTOM_HOST}
     IdentityFile ~/.ssh/r10k.provision
     UserKnownHostsFile /dev/null
     StrictHostKeyChecking no
 EOL
-
+        chmod 0600 /root/.ssh/config
     fi
 
 fi
