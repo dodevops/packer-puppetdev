@@ -35,15 +35,6 @@
   },
   {
     "op": "add",
-    "path": "/provisioners/0",
-    "value": {
-      "type": "file",
-      "source": "../files",
-      "destination": "/tmp"
-    }
-  },
-  {
-    "op": "add",
     "path": "/post-processors/0/include",
     "value": [
       "../vagrant.includes/config.dist.yaml",
