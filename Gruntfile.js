@@ -19,8 +19,7 @@ module.exports = function (grunt) {
                     template: 'ubuntu.json',
                     templatePath: 'base.ubuntu',
                     patches: [
-                        'patches/common.patch.json',
-                        'patches/ubuntu.patch.json'
+                        'patches/common.patch.json'
                     ],
                     only: [
                         'virtualbox-iso'
@@ -29,6 +28,24 @@ module.exports = function (grunt) {
                         'ubuntu1404.json',
                         '../vars/common.json',
                         '../vars/ubuntu.json'
+                    ],
+                    runPacker: true
+                }
+            },
+            debian: {
+                options: {
+                    template: 'debian.json',
+                    templatePath: 'base.debian',
+                    patches: [
+                        'patches/common.patch.json'
+                    ],
+                    only: [
+                        'virtualbox-iso'
+                    ],
+                    varFiles: [
+                        'debian85.json',
+                        '../vars/common.json',
+                        '../vars/debian.json'
                     ],
                     runPacker: true
                 }
@@ -42,6 +59,15 @@ module.exports = function (grunt) {
                         '-ubuntu-' +
                         commonInfo.version +
                         '.box'
+                }
+            },
+            debian: {
+                options: {
+                    boxPath: 'base.debian/box/virtualbox/' +
+                    commonInfo.base_vm_name +
+                    '-debian-' +
+                    commonInfo.version +
+                    '.box'
                 }
             }
         }
@@ -86,5 +112,6 @@ module.exports = function (grunt) {
     grunt.loadTasks('./lib');
 
     grunt.registerTask('ubuntu', ['packerbuild:ubuntu', 'packertest:ubuntu']);
+    grunt.registerTask('debian', ['packerbuild:debian', 'packertest:debian']);
 
 };

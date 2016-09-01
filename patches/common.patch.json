@@ -40,5 +40,25 @@
       "../vagrant.includes/config.dist.yaml",
       "../vagrant.includes/hiera.yaml"
     ]
+  },
+  {
+    "op": "add",
+    "path": "/provisioners/1/scripts/9",
+    "value": "../scripts/r10k.sh"
+  },
+  {
+    "op": "add",
+    "path": "/provisioners/1/scripts/9",
+    "value": "../scripts/puppet.sh"
+  },
+  {
+    "op": "add",
+    "path": "/provisioners/1/scripts/9",
+    "value": "../scripts/common.sh"
+  },
+  {
+    "op": "add",
+    "path": "/provisioners/1/scripts/-",
+    "value": "../scripts/git.sh"
   }
 ]

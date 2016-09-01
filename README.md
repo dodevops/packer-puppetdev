@@ -78,13 +78,19 @@ The wildcard "*" will add the custom var file to all machine types.
 
 ### Enabling r10k custom host feature
 
-If you'd like to use custom modules in a locally hosted git-repository,
-you can provide that using a local variable file, where you define
-these two keys:
+If you'd like to use custom puppet modules in a private git-repository,
+you have to do two things:
+
+Create an SSH private key named "r10k.provision" and place it under 
+local/files. Give this private key access to all module repositories
+you require. After that, define two keys using the local variable
+feature (see above):
 
 * _feature_r10k_custom_: Set this to true to enable this feature
 * _r10k_custom_host_: The hostname of the git repository. This will be
-used to configure an SSH-connection inside the virtual machine
+used to configure an SSH-connection inside the virtual machine. The 
+connection will use the provided key and ignore the host key to avoid
+problems running r10k automatically.
 
 ## Prerequisites
 
