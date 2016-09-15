@@ -35,6 +35,10 @@ Vagrant.configure(2) do |config|
 
   config.vm.synced_folder vagrant_config['environment_path'], "/etc/puppet/environments/localdev"
 
+  # Optionally install r10k private feature
+
+  config.vm.provision "shell", run: "always", path: "#{current_dir}/r10kprivate.sh"
+
   # Install puppet modules
 
   config.vm.provision "shell", run: "always", env: {

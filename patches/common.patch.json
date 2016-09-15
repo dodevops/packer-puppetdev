@@ -38,7 +38,8 @@
     "path": "/post-processors/0/include",
     "value": [
       "../vagrant.includes/config.dist.yaml",
-      "../vagrant.includes/hiera.yaml"
+      "../vagrant.includes/hiera.yaml",
+      "../vagrant.includes/r10kprivate.sh"
     ]
   },
   {

@@ -13,14 +13,30 @@ The generated boxes have the following features:
 * Run puppet apply
 * Use hiera
 
-To use these features, create a "puppet" subdirectory where your 
+### Puppet
+
+To use puppet, create a "puppet" subdirectory where your 
 Vagrantfile lies.
  
 Inside, create a "site.pp" file. This file will be run by puppet apply 
 during the provisioning process.
 
-You can create a Puppetfile and place modules there, that r10k will 
-install. (Using r10k puppetfile install)
+You can also use a different manifest file name, provide custom facts 
+and specify puppet apply arguments. See Overriding configuration 
+below for details.
+
+### r10k
+
+You can create a Puppetfile in the puppet subdirectory and place 
+modules there, that r10k will install. (Using r10k puppetfile install)
+
+To support private repositories when using r10k, you'll have to put
+two files in the directory where your Vagrantfile is: One file named
+"r10k.provision" holding a SSH public key, that is used when
+connecting to your private repositories and a file named "r10k.host"
+with the host name of your private repository host.
+
+### Hiera
 
 Create a subdirectory "hieradata" and place hiera yaml files there. 
 
@@ -76,9 +92,10 @@ Here you can specify, which machine type gets which variable files:
 
 The wildcard "*" will add the custom var file to all machine types.
 
-### Enabling r10k custom host feature
+### Enabling r10k custom host feature from within the box
 
-If you'd like to use custom puppet modules in a private git-repository,
+If you'd like to use custom puppet modules in a private git-repository
+and don't want the user to supply the public key beside the Vagrantfile,
 you have to do two things:
 
 Create an SSH private key named "r10k.provision" and place it under 
