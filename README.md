@@ -32,7 +32,7 @@ modules there, that r10k will install. (Using r10k puppetfile install)
 
 To support private repositories when using r10k, you'll have to put
 two files in the directory where your Vagrantfile is: One file named
-"r10k.provision" holding a SSH public key, that is used when
+"r10k.provision" holding a SSH private key, that is used when
 connecting to your private repositories and a file named "r10k.host"
 with the host name of your private repository host.
 
