@@ -6,7 +6,7 @@ CODENAME=$(lsb_release -cs)
 
 # Install puppet
 
-wget https://apt.puppetlabs.com/puppetlabs-release-${CODENAME}.deb -O /tmp/puppetlabs.deb
+wget https://apt.puppetlabs.com/puppetlabs-release${PUPPET_RELEASE_SUFFIX}-${CODENAME}.deb -O /tmp/puppetlabs.deb
 dpkg -i /tmp/puppetlabs.deb
 apt-get update
 rm /tmp/puppetlabs.deb

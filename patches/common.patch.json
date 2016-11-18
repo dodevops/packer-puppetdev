@@ -26,6 +26,11 @@
   },
   {
     "op": "add",
+    "path": "/provisioners/0/environment_vars/-",
+    "value": "PUPPET_RELEASE_SUFFIX={{user `puppet_release_suffix`}}"
+  },
+  {
+    "op": "add",
     "path": "/provisioners/0",
     "value": {
       "type": "file",

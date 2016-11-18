@@ -32,6 +32,24 @@ module.exports = function (grunt) {
                     runPacker: true
                 }
             },
+            ubuntu1604: {
+                options: {
+                    template: 'ubuntu.json',
+                    templatePath: 'base.ubuntu',
+                    patches: [
+                        'patches/common.patch.json'
+                    ],
+                    only: [
+                        'virtualbox-iso'
+                    ],
+                    varFiles: [
+                        'ubuntu1604.json',
+                        '../vars/common.json',
+                        '../vars/ubuntu1604.json'
+                    ],
+                    runPacker: true
+                }
+            },
             debian: {
                 options: {
                     template: 'debian.json',
@@ -59,6 +77,15 @@ module.exports = function (grunt) {
                         '-ubuntu-' +
                         commonInfo.version +
                         '.box'
+                }
+            },
+            ubuntu1604: {
+                options: {
+                    boxPath: 'base.ubuntu/box/virtualbox/' +
+                    commonInfo.base_vm_name +
+                    '-ubuntu1604-' +
+                    commonInfo.version +
+                    '.box'
                 }
             },
             debian: {
@@ -112,6 +139,13 @@ module.exports = function (grunt) {
     grunt.loadTasks('./lib');
 
     grunt.registerTask('ubuntu', ['packerbuild:ubuntu', 'packertest:ubuntu']);
+    grunt.registerTask(
+        'ubuntu1604',
+        [
+            'packerbuild:ubuntu1604',
+            'packertest:ubuntu1604'
+        ]
+    );
     grunt.registerTask('debian', ['packerbuild:debian', 'packertest:debian']);
 
 };
