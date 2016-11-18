@@ -6,7 +6,7 @@
   "r10k_custom_host": "",
   "vagrantfile_template": "../vagrantfiles/Vagrantfile",
   "base_vm_name": "puppetdev",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "puppet_release_suffix": "",
   "headless": "true"
 }
