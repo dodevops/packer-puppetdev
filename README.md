@@ -115,6 +115,7 @@ problems running r10k automatically.
 * [Node.js](https://nodejs.org) => 4.5.0
 * [Vagrant](https://vagrantup.com)
 * [VirtualBox](https://virtualbox.org)
+* [Ruby](https://ruby-lang.org)
 
 ## Initialize the submodules
 
@@ -129,6 +130,11 @@ To build, you first need to install grunt-cli and the needed modules:
     npm install -g grunt-cli
     npm install
 
+Tests are done using serverspec, which runs on ruby and needs some gems:
+
+    gem install bundler
+    bundle install
+
 Then, simply run grunt with the desired target machine:
 
     grunt ubuntu
@@ -138,8 +144,7 @@ against it.
 
 ## Testing
 
-The tests are done using [Serverspec](http://serverspec.org/) and the
-[Vagrant-serverspec plugin](https://github.com/jvoorhis/vagrant-serverspec)
+The tests are done using [Serverspec](http://serverspec.org/).
 
 The testing process injects the generated box into the vagrant box
 cache and fires up a vagrant machine in test/. This machine starts up

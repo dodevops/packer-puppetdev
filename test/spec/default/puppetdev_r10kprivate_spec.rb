@@ -1,4 +1,4 @@
-require_relative 'spec_helper'
+require_relative '../spec_helper'
 
 describe file('/root/.ssh/r10k.provision') do
   it { should exist }
