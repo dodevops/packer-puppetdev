@@ -40,8 +40,8 @@ with the host name of your private repository host.
 
 Create a subdirectory "hieradata" and place hiera yaml files there. 
 
-Look under vagrant.includes/hiera.yaml for the default hiera 
-configuration.
+Look under vagrant.includes/hiera.yaml or hiera5.yaml (for puppet 4) for
+the default hiera configuration.
 
 ### Overriding configuration
 
@@ -50,8 +50,8 @@ your Vagrantfile is. Look in vagrant.includes/config.dist.yaml for the
 keys you can override there.
 
 Also, you can place a hiera.yaml where your Vagrantfile is to alter
-the used hiera configuration. Use vagrant.includes/hiera.yaml as a 
-template.
+the used hiera configuration. Use vagrant.includes/hiera.yaml or hiera5.yaml
+(for puppet 4) as a template.
 
 # Building
 
