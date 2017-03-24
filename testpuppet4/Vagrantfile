@@ -1,0 +1,7 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "test-puppetdev"
+
+  config.vm.provision :serverspec do |spec|
+    spec.pattern = '*_spec.rb'
+  end
+end

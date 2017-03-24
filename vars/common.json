@@ -8,5 +8,6 @@
   "base_vm_name": "puppetdev",
   "version": "0.1.2",
   "puppet_release_suffix": "",
-  "headless": "true"
+  "headless": "true",
+  "puppet_version": "3"
 }

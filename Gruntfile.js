@@ -50,6 +50,24 @@ module.exports = function (grunt) {
                     runPacker: true
                 }
             },
+            ubuntu1604puppet4: {
+                options: {
+                    template: 'ubuntu.json',
+                    templatePath: 'base.ubuntu',
+                    patches: [
+                        'patches/common.patch.json'
+                    ],
+                    only: [
+                        'virtualbox-iso'
+                    ],
+                    varFiles: [
+                        'ubuntu1604.json',
+                        '../vars/common.json',
+                        '../vars/ubuntu1604puppet4.json'
+                    ],
+                    runPacker: true
+                }
+            },
             debian: {
                 options: {
                     template: 'debian.json',
@@ -86,6 +104,16 @@ module.exports = function (grunt) {
                     '-ubuntu1604-' +
                     commonInfo.version +
                     '.box'
+                }
+            },
+            ubuntu1604puppet4: {
+                options: {
+                    boxPath: 'base.ubuntu/box/virtualbox/' +
+                    commonInfo.base_vm_name +
+                    '-ubuntu1604puppet4-' +
+                    commonInfo.version +
+                    '.box',
+                    testpath: 'testpuppet4'
                 }
             },
             debian: {
@@ -147,5 +175,12 @@ module.exports = function (grunt) {
         ]
     );
     grunt.registerTask('debian', ['packerbuild:debian', 'packertest:debian']);
+    grunt.registerTask(
+        'ubuntu1604puppet4',
+        [
+            'packerbuild:ubuntu1604puppet4',
+            'packertest:ubuntu1604puppet4'
+        ]
+    );
 
 };

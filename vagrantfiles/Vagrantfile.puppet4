@@ -1,0 +1,64 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+require 'yaml'
+
+# Load our distribution configuration
+
+current_dir = File.dirname(File.expand_path(__FILE__))
+vagrant_config = YAML.load_file("#{current_dir}/config.dist.yaml")
+
+# Load the site's distribution configuration
+
+if File.exist?("config.dist.yaml")
+    site_dist_config = YAML.load_file("config.dist.yaml")
+    vagrant_config.merge!(site_dist_config)
+end
+
+# Load the site configuration
+
+if File.exist?("config.yaml")
+    site_config = YAML.load_file("config.yaml")
+    vagrant_config.merge!(site_config)
+end
+
+# Does a local hiera configuration exist? If so, use that one
+
+hiera_config = File.expand_path("../hiera5.yaml", __FILE__)
+if File.exist?("hiera.yaml")
+  hiera_config = "hiera.yaml"
+end
+
+Vagrant.configure(2) do |config|
+
+  # Mount puppet folder
+
+  config.vm.synced_folder vagrant_config['environment_path'], "/etc/puppetlabs/code/environments/localdev"
+
+  # Optionally install r10k private feature
+
+  config.vm.provision "shell", run: "always", path: "#{current_dir}/r10kprivate.sh"
+
+  # Install puppet modules
+
+  config.vm.provision "shell", run: "always", env: {
+    "PUPPETFILE" => "/etc/puppetlabs/code/environments/localdev/Puppetfile",
+    "PUPPETFILE_DIR" => "/etc/puppetlabs/code/environments/localdev/modules"
+  }, inline: <<-SHELL
+    r10k puppetfile install
+  SHELL
+
+  # Run puppet apply
+
+  config.vm.provision "puppet", run: "always" do |puppet|
+    puppet.environment_path = ["vm", "/etc/puppetlabs/code/environments"]
+    puppet.environment = "localdev"
+    puppet.manifests_path = ["vm", "/etc/puppetlabs/code/environments/localdev"]
+    puppet.manifest_file = vagrant_config['puppet_manifest']
+    puppet.options = vagrant_config['puppet_arguments']
+    puppet.hiera_config_path = hiera_config
+    puppet.facter = vagrant_config["puppet_custom_facts"]
+    puppet.working_directory = "/etc/puppetlabs/code/environments/localdev"
+  end
+
+end

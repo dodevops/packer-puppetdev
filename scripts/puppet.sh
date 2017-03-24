@@ -11,8 +11,14 @@ dpkg -i /tmp/puppetlabs.deb
 apt-get update
 rm /tmp/puppetlabs.deb
 
-apt-get -y install puppet
+if [ ${PUPPET_VERSION} -eq 3 ]
+then
+    apt-get -y install puppet
+    # Remove deprecated configuration from puppet
 
-# Remove deprecated configuration from puppet
+    sed -i -re "/^templatedir=/d" /etc/puppet/puppet.conf
 
-sed -i -re "/^templatedir=/d" /etc/puppet/puppet.conf
+elif [ ${PUPPET_VERSION} -eq 4 ]
+then
+    apt-get -y install puppet-agent
+fi
