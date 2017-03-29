@@ -1,0 +1,6 @@
+{
+  "vagrantfile_template": "../vagrantfiles/Vagrantfile.puppet4",
+  "vm_name": "puppetdev-ubuntupuppet4",
+  "puppet_release_suffix": "-pc1",
+  "puppet_version": "4"
+}

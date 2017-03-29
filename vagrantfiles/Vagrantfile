@@ -39,6 +39,27 @@ Vagrant.configure(2) do |config|
 
   config.vm.provision "shell", run: "always", path: "#{current_dir}/r10kprivate.sh"
 
+  # Fix https://github.com/puppetlabs/r10k/issues/709
+
+  config.vm.provision "shell", run: "always", env: {
+      "MODULEPATH" => "/etc/puppet/environments/localdev/modules"
+  }, inline: <<-SHELL
+    if [ -e ${MODULEPATH} ]
+    then
+
+        for MODULE in `find ${MODULEPATH} -maxdepth 1 -type d`
+        do
+            if [ -e ${MODULE}/.git ]
+            then
+                cd ${MODULE}
+                git status &>/dev/null
+            fi
+        done
+
+    fi
+    exit 0
+  SHELL
+
   # Install puppet modules
 
   config.vm.provision "shell", run: "always", env: {
