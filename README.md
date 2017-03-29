@@ -1,8 +1,12 @@
-![Status: Beta](https://img.shields.io/badge/Status-Beta-yellow.svg)
-# Local testing of puppet
+# Puppetdev
+
+*Local testing of puppet manifests using Vagrant*
 
 This repository contains scripts together with basic Packer templates for
 generating Vagrant boxes, that can be used for local puppet testing.
+
+These boxes are available on [Hashicorp's Atlas](https://atlas.hashicorp.com/boxes/search?utf8=%E2%9C%93&sort=&provider=&q=dodevops%2Fpuppetdev)
+for use with Vagrant.
 
 ## Usage
 
@@ -12,6 +16,33 @@ The generated boxes have the following features:
 * Install puppet modules from a private git repository
 * Run puppet apply
 * Use hiera
+
+### Prerequisites
+
+These boxes run under [vagrant](https://vagrantup.com) using the
+[VirtualBox](https://virtualbox.org) provider, so you'll need to have both
+things installed.
+
+Once ready, create an empty directory somewhere and run the following command:
+
+    vagrant init dodevops/puppetdev-CONFIGURATION
+
+Where "CONFIGURATION" should be replaced with one of the following:
+
+| CONFIGURATION      | Distribution | Version | Puppet-Release |
+| ------------------ | ------------ | ------- | -------------- |
+| debian             | Debian       | 8.5     | 3              |
+| debianpuppet4      | Debian       | 8.5     | 4              |
+| ubuntu             | Ubuntu       | 14.04   | 3              |
+| ubuntupuppet4      | Ubuntu       | 14.04   | 4              |
+| ubuntu16.04        | Ubuntu       | 16.04   | 3              |
+| ubuntu16.04puppet4 | Ubuntu       | 16.04   | 4              |
+
+For example, to install Ubuntu 16.04 with Puppet4, you would use:
+
+    vagrant init dodevops/puppetdev-ubuntu16.04puppet4
+
+Afterwards, `vagrant up` will start your virtual machine, but first, read on...
 
 ### Puppet
 
