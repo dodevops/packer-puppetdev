@@ -97,7 +97,7 @@ module.exports = function (grunt) {
                         'virtualbox-iso'
                     ],
                     varFiles: [
-                        'debian85.json',
+                        'debian8.json',
                         '../vars/common.json',
                         '../vars/debian.json'
                     ],
@@ -115,7 +115,7 @@ module.exports = function (grunt) {
                         'virtualbox-iso'
                     ],
                     varFiles: [
-                        'debian85.json',
+                        'debian8.json',
                         '../vars/common.json',
                         '../vars/debianpuppet4.json'
                     ],
@@ -250,6 +250,18 @@ module.exports = function (grunt) {
         [
             'packerbuild:debianpuppet4',
             'packertest:debianpuppet4'
+        ]
+    );
+
+    grunt.registerTask(
+        'all',
+        [
+            'ubuntu',
+            'ubuntu1604',
+            'debian',
+            'ubuntupuppet4',
+            'ubuntu1604puppet4',
+            'debianpuppet4'
         ]
     );
 

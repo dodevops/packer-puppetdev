@@ -9,7 +9,22 @@ then
 
     # Install r10k
 
-    gem install r10k
+    set +e
+    GEMINSTALL=`gem install r10k 2>&1`
+
+    if [ $? -ne 0 ]
+    then
+        DEPERROR=`echo ${GEMINSTALL} | grep "requires semantic_puppet" | wc -l`
+        if [ ${DEPERROR} -ne 0 ]
+        then
+            gem install puppet_forge -v 2.2.6
+            gem install r10k
+        else
+            echo "Error installing r10k: ${GEMINSTALL}"
+            exit 1
+        fi
+    fi
+    set -e
 
     if [ ! -e "${PUPPET_CONFDIR}" ]
     then
