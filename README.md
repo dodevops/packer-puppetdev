@@ -5,7 +5,7 @@
 This repository contains scripts together with basic Packer templates for
 generating Vagrant boxes, that can be used for local puppet testing.
 
-These boxes are available on [Hashicorp's Atlas](https://atlas.hashicorp.com/boxes/search?utf8=%E2%9C%93&sort=&provider=&q=dodevops%2Fpuppetdev)
+These boxes are available on [Hashicorp's Vagrant cloud](https://app.vagrantup.com/boxes/search?utf8=%E2%9C%93&sort=downloads&provider=&q=dodevops%2Fpuppetdev)
 for use with Vagrant.
 
 ## Usage
@@ -31,8 +31,8 @@ Where "CONFIGURATION" should be replaced with one of the following:
 
 | CONFIGURATION      | Distribution | Version | Puppet-Release |
 | ------------------ | ------------ | ------- | -------------- |
-| debian             | Debian       | 8.5     | 3              |
-| debianpuppet4      | Debian       | 8.5     | 4              |
+| debian             | Debian       | 8.6     | 3              |
+| debianpuppet4      | Debian       | 8.6     | 4              |
 | ubuntu             | Ubuntu       | 14.04   | 3              |
 | ubuntupuppet4      | Ubuntu       | 14.04   | 4              |
 | ubuntu16.04        | Ubuntu       | 16.04   | 3              |
@@ -143,7 +143,7 @@ problems running r10k automatically.
 ## Prerequisites
 
 * [Packer](https://packer.io)
-* [Node.js](https://nodejs.org) => 4.5.0
+* [Node.js](https://nodejs.org) >= 4.5.0
 * [Vagrant](https://vagrantup.com)
 * [VirtualBox](https://virtualbox.org)
 * [Ruby](https://ruby-lang.org)
